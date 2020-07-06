@@ -19,7 +19,7 @@ const App = () => {
       const blogs = await blogService.getAll()
       setBlogs(blogs)
     }
-    fetchBlogs() 
+    fetchBlogs()
   }, [])
 
   useEffect(() => {
@@ -32,18 +32,14 @@ const App = () => {
   }, [])
 
   const handleLogin = async (userObject) => {
-    try {
-      const user = await loginService.login(userObject)
+    const user = await loginService.login(userObject)
 
-      window.localStorage.setItem(
-        'loggedBlogappUser', JSON.stringify(user)
-      )
+    window.localStorage.setItem(
+      'loggedBlogappUser', JSON.stringify(user)
+    )
 
-      blogService.setToken(user.token)
-      setUser(user)
-    } catch (exception) {
-      throw exception;
-    }
+    blogService.setToken(user.token)
+    setUser(user)
   }
 
   const showNotification = (message, type='success') => {
@@ -86,7 +82,7 @@ const App = () => {
         <button onClick={() => {window.localStorage.clear(); window.location.reload(false)}}>logout</button>
       </p>
       <Togglable buttonLabel="new blog" ref={createBlogFormRef}>
-        <CreateBlogForm 
+        <CreateBlogForm
           createBlog={addBlog}
         />
       </Togglable>
@@ -101,8 +97,8 @@ const App = () => {
 
   return (
     <div>
-      {user === null ? 
-        loginForm() : 
+      {user === null ?
+        loginForm() :
         bloglist()
       }
     </div>
