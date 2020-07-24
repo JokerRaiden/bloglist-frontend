@@ -35,12 +35,12 @@ const Blog = ({ blog, handleRemove, username }) => {
 
   let removeButton
   if (username === blog.user.username) {
-    removeButton = <button onClick={deleteBlog}>remove</button>
+    removeButton = <button id='remove-button' onClick={deleteBlog}>remove</button>
   }
 
   if (!viewAllInfo) {
     return (
-      <div style={blogStyle}>
+      <div className='blog' style={blogStyle}>
         {blog.title} {blog.author}
         <button onClick={toggleViewAllInfo}>view</button>
       </div>
@@ -48,12 +48,12 @@ const Blog = ({ blog, handleRemove, username }) => {
   }
   else {
     return (
-      <div style={blogStyle}>
+      <div className='blog' style={blogStyle}>
         {blog.title} {blog.author}
         <button onClick={toggleViewAllInfo}>hide</button> <br/>
         {blog.url} <br/>
         likes {likes}
-        <button onClick={handleLike}>like</button>
+        <button id='like-button' onClick={handleLike}>like</button>
         <br/>
         {blog.user.name} <br/>
         {removeButton}
